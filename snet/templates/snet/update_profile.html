@@ -1,0 +1,21 @@
+<h1>{{userb.name}} </h1>
+<h3>UPDATE YOUR PROFILE!!!</h3>
+
+<form action="{% url 'snet:profile' userb.name%}" method= "post">
+	{% csrf_token %}
+
+	First Name:
+	    <input type="text" maxlength="50" name="fname" value={{userp.first_name}} 
+	            /></br>
+	Last Name:
+	    <input type="text" maxlength="50" name="lname" value={{userp.last_name}} /></br>
+	age:
+        <input type="number" name="age" value={{userb.age}} min="0" max="99"/></br>
+        
+        <input type="radio" name="sex" value="M" 
+        {% ifequal userb.gender 'M'%} checked {% endifequal %}>Male<br>
+        <input type="radio" name="sex" value="F"
+        {% ifequal userb.gender 'F'%} checked {% endifequal %}>Female</br>
+
+        <input type = "submit" name='buserupdate' value = "Update Profile">
+        <input type = "submit" name='bupdatecancle' value = "Cancel">

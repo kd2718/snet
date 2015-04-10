@@ -1,0 +1,27 @@
+The Register Page!
+
+<form action="{% url 'snet:userlogin' %}" method= "post">
+	{% csrf_token %}
+	
+	Username: 
+	    <input type="text" maxlength="50" name="uname"  /></br>
+	Password: 
+	    <input type="password" maxlength="20" name="pass"  /></br>
+	Re-enter Password:
+	    <input type="password" maxlength="20" name="pass2"  /></br>
+	First Name:
+	    <input type="text" maxlength="50" name="fname"  /></br>
+	Last Name:
+	    <input type="text" maxlength="50" name="lname"  /></br>
+	age:
+        <input type="number" maxlength="2" name="age"  
+        min="0" max="99" value="0"/></br>
+    Gender:</br>
+        <input type="radio" name="sex" value="M">Male<br>
+        <input type="radio" name="sex" value="F" checked>Female</br>
+
+
+        <input type = "submit" name='bnewuser' value = "Create Account">
+
+	    <!--Add facebook integraton -->
+</form>

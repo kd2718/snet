@@ -1,0 +1,15 @@
+{% if recent_users %}
+    <ul>
+    {% for user_sr in recent_users %}
+        {% if userb.name == user_sr.name %}
+        <li><a href="{% url 'snet:profile' userb.name%}">{{user_sr.name}}</a>
+        {%else %}
+        <li><a href="{% url 'snet:profile' user_sr.name%}">{{user_sr.name}}</a>
+        {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+	<p> NO USERS ARE AVAILABLE.</p>
+{% endif %}
+<!-- I cant believe this worked... -->

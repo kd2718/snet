@@ -1,0 +1,48 @@
+<ol>
+<li>Create account with snet/login</li>
+<li>Make sure you have a valid facebook account</li>
+<li> User the facebook login from snet/login</li>
+<li> Login with facebook</li>
+<li> Login with snet</li>
+</ol>
+<div>
+<form action="{% url 'snet:faceregister' flog.identifier user.username%}" method= "post">
+	{% csrf_token %}
+	Facebook ID:
+	    <input type="text" value = {{flog.identifier}} readonly>
+	User Name: 
+	    <input type="text" maxlength="500" name="tname"  /></br>
+	Password: 
+	    <input type="password" maxlength="500" name="ppass"  /></br>
+	    <input type = "submit" name='blogin' value = "Login"></br>
+</form>
+</div>
+
+<p> OR REGISTER NEW USER </p>
+
+<div>
+<form action="{% url 'snet: faceregister' info.id user.username %}" method="post">
+    {% csrf_token %}
+    Username: 
+	    <input type="text" maxlength="50" name="uname"  /></br>
+	Password: 
+	    <input type="password" maxlength="20" name="pass"  /></br>
+	Re-enter Password:
+	    <input type="password" maxlength="20" name="pass2"  /></br>
+    First Name:
+	    <input type="text" maxlength="50" name="fname" value={{info.first_name}} 
+	            /></br>
+	Last Name:
+	    <input type="text" maxlength="50" name="lname" value={{info.last_name}} /></br>
+	age:
+        <input type="number" name="age" value={{0}} min="0" max="99"/></br>
+        
+        <input type="radio" name="sex" value="M" 
+        {% ifequal info.gender 'male'%} checked {% endifequal %}>Male<br>
+        <input type="radio" name="sex" value="F"
+        {% ifequal info.gender 'F'%} checked {% endifequal %}>Female</br>
+
+        <input type = "submit" name='buserupdate' value = "Update Profile">
+        <input type = "submit" name='bupdatecancle' value = "Cancel">
+</form>
+</div>

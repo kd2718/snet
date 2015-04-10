@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<!-- REF http://stackoverflow.com/questions/5871730/need-a-minimal-django-file-upload-example -->
+
+<html>
+{% extends 'wrapper.html' %}
+{% block profile %} "{% url 'snet:profile' user.username %}" {% endblock %}
+{% block content %}
+<script>
+
+$(document).ready(function() {
+    $("[id=plink]").css("cursor", "default");
+ });
+
+
+</script>
+    {% if user.username == userb.name %}
+    <form action="{% url 'snet:list' userb.name%}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.non_field_errors }}</p>
+        <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+        <p>
+            {{ form.docfile.errors }}
+            {{ form.docfile }}
+        </p>
+        <p><input type="submit" value="Upload" name="bupload"/></p>
+        <p><input type="submit" value="Back to Wall" name="bback"/></p>
+    </form>
+    {% endif %}
+
+
+<!-- List of uploaded documents -->
+{% if documents %}
+    <div class="container">
+        <div class="row">
+            {% for document in documents reversed%}
+                <div class="col-md-4">
+                    <a href="{% url 'snet:photo_update' userb.name document.id%}" class="thumbnail" 
+                    style="text-decoration:none;"
+                    {% if user.username != userb.name %}
+                        onclick="return false"
+                        id="plink"
+                    {% endif %}>
+                        <img src="{{ document.photo.url }}" class="img-thumbnail" style="width:150px;height:150px" alt="{{ document.photo.name }}">
+                        <p>{{ document.photo.name }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+{% endblock %}
+
+
+</html> 

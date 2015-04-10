@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<h1> Please Log in or Register! </h1>
+{% if error_message%} <p><strong>{{error_message}}</strong></p>{% endif %}
+
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1818162548408026',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<form action="{% url 'snet:userlogin' %}" method= "post">
+	{% csrf_token %}
+	
+	User Name: 
+	    <input type="text" maxlength="500" name="tname"  /></br>
+	Password: 
+	    <input type="password" maxlength="500" name="ppass"  /></br>
+	    <input type = "submit" name='blogin' value = "Login"></br>
+        <input type = "submit" name='bregister' value = "Register">
+        <input type = "submit" name="bface" value="Facebook Login">
+
+	    <!--Add facebook integraton -->
+</form>
+<!--
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+-->
+</body>
+</html>

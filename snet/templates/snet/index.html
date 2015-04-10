@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+{% if recent_users %}
+    <ul>
+    {% for userb in recent_users %}
+        <li><a href="{% url 'snet:profile' userb.name%}">{{userb.name}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+	<p> NO USERS ARE AVAILABLE.</p>
+{% endif %}
+</html>

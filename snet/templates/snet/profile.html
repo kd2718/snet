@@ -1,0 +1,70 @@
+{% extends 'wrapper.html' %}
+{% block profile %} "{% url 'snet:profile' user.username %}" {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>{{userb.name}}</h1>
+                     {% if error_message%} <p><strong>{{error_message}}</strong></p>{% endif %}
+
+                     {% if pro_pic.is_profile_pic %}
+                     <p> <img src={{pro_pic.photo.url}} class="img-thumbnail" width=256 height=256/> </p>
+                      {% endif %}
+            </div>
+            <div class="col-sm-6">
+                <form action="{% url 'snet:profile' userb.name%}" method="post">
+                    {% csrf_token %}
+	                <p>Username: {{userb.name}}</br>Age: {{userb.age}}</br>
+	                Gender: {{userb.gender}}</br>First Name:{{userp.first_name}}</br>
+	                Last Name: {{userp.last_name}}</p>
+                    <input type="submit" value="Edit Info" name="bedit" {% if user.username != userb.name %} hidden {% endif %}></br>
+	            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="media-list">
+        <div class="media-body>">
+            <h3 class="media-heading">Update your Status!</h3>
+            <form action="{% url 'snet:profile' userb.name %}" method= "post" >
+	            {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="..." name="postWall" maxlength="500">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit" name="bwall">Update Wall!</button>
+                        </span>
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="submit" name="bpic" value = "Photo Album">Photo Album</button>
+                        </span>
+                    </div><!-- /input-group -->
+            </form>
+		    <ul>
+		        {% for post in postsa reversed%}
+    	        <li><h3>{{post.status }}</h3></li>
+    	        <label for"post{{forloop.counter}}">---{{post.pub_date}} by {{post.poster}}</label>
+    	        <ul>
+    	            <div class="media-body>">
+    	                {% for sp in subpost %}
+    	                {% ifequal sp.parent_post.pk post.pk%}
+    	                </br><li><h4>{{sp.status}}</h4></li> ---{{sp.pub_date}} by {{sp.poster}}
+    	                {% endifequal %}
+		                {% endfor %}
+                        <form action="{% url 'snet:subpost' userb.name post.pk forloop.counter %}" method= "post"/>
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Comment on this" name="tsubpost{{ post.pk }}" maxlength="500" id="test{{ post.pk }}">
+			                    <span class="input-group-btn">
+			                        <button class="btn btn-success" type="submit" name="bcomment{{ post.pk }}">Comment</button>
+			                    </span>
+			                </div><!-- /input-group -->
+                        </form>
+                    </div>
+		        </ul>
+		        {% endfor %}
+		    </ul>
+		</div>
+    </div>
+{% endblock %}
+</div>
