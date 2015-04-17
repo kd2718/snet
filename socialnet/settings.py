@@ -90,12 +90,17 @@ AUTHENTICATION_BACKENDS = (
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+print(STATICFILES_DIRS)
+
+
+
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 LOGIN_URL = r'/snet/login'
 LOGOUR_URL = r'/login'
-#LOGIN_REDIRECT_URL='/snet/account_check/' #UPDATE THIS IN URLS
-#LOGIN_REDIRECT_URL=r'snet/account_check/(?P<provider>\w+)'
-#LOGIN_REDIRECT_URL='/snet/facelogin/'
+
+LOGIN_REDIRECT_URL='snet/faceregister/%s/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'snet/media')
 MEDIA_URL = r'/media/'
-#STATIC_URL = '/static/'
+

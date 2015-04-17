@@ -1,5 +1,15 @@
 <head> 
-<meta charset="utf-8">
+{% load staticfiles %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="{% static 'bower_components/angular/angular.min.js' %}"></script>
+
+<!-- REAL ACTUAL HTML (not just loading stuff) -->
+
 <title>Social Network</title>
 <nav class="navbar navbar-default">
     <div class="row" style="padding:10px" class="container-fluid">
@@ -32,11 +42,7 @@
     </pre>
 
 <!-- bootstrap stuff -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 
   <style>
 

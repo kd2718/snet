@@ -1,3 +1,6 @@
+{% extends 'wrapper.html' %}
+{% block profile %} "{% url 'snet:profile' user.username %}" {% endblock %}
+{% block content %}
 {% if recent_users %}
     <ul>
     {% for user_sr in recent_users %}
@@ -13,3 +16,4 @@
 	<p> NO USERS ARE AVAILABLE.</p>
 {% endif %}
 <!-- I cant believe this worked... -->
+{% endblock %}

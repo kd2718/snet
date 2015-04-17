@@ -1,7 +1,10 @@
 from django.db import models
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.contrib.auth.forms import UserCreationForm
 #from django.shortcuts import get_object_or_404
+
 
 
 
@@ -25,6 +28,11 @@ class User_Bio(models.Model):
 
     def __str__(self):
         return self.name
+
+class UserBioForm(ModelForm):
+    class Meta:
+        model = User_Bio
+        fields = ['name', 'age', 'gender']
 
 class Wall(models.Model):
     user = models.ForeignKey(User_Bio)

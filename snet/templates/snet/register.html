@@ -1,7 +1,24 @@
 The Register Page!
 
+{% if err_msg %}
+<h2> <strong>{{err_msg}} </strong></h2>
+{% endif %}
+
 <form action="{% url 'snet:userlogin' %}" method= "post">
 	{% csrf_token %}
+	{% if f_id %}
+	<h2> Log in as existing User</h2></br>
+	User Name: 
+	    <input type="text" maxlength="500" name="tname"  /></br>
+	Password: 
+	    <input type="password" maxlength="500" name="ppass"  /></br>
+	    <input type = "submit" name='blogin' value = "Login"></br>
+
+	
+    </br>Facebook ID:
+	    <input type="text" maxlength="50" name="fid" value={{f_id}} readonly="readonly" /></br>
+	<h2> Or create a user account </h2></br>
+	{% endif %}
 	
 	Username: 
 	    <input type="text" maxlength="50" name="uname"  /></br>
@@ -10,9 +27,11 @@ The Register Page!
 	Re-enter Password:
 	    <input type="password" maxlength="20" name="pass2"  /></br>
 	First Name:
-	    <input type="text" maxlength="50" name="fname"  /></br>
+	    <input type="text" maxlength="50" name="fname" {% if f_id %} 
+	              value={{user.first_name}} {% endif %} /></br>
 	Last Name:
-	    <input type="text" maxlength="50" name="lname"  /></br>
+	    <input type="text" maxlength="50" name="lname" {% if f_id %} 
+	              value={{user.last_name}} {% endif %} /></br>
 	age:
         <input type="number" maxlength="2" name="age"  
         min="0" max="99" value="0"/></br>
